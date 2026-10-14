@@ -1,7 +1,8 @@
 /* Sources widget. Copyright (c) 2026 ca-boh. All rights reserved. No license is granted to use, copy, modify or distribute this code. */
 (function () {
+  function render() {
   var S = window.SW || [], root = document.getElementById("sw");
-  if (!root) return;
+  if (!root || !S.length) return;
   var sup = {"0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹",k:"ᵏ",s:"ˢ",d:"ᵈ",u:"ᵘ",e:"ᵉ",m:"ᵐ",p:"ᵖ",c:"ᶜ"};
   function toSup(m) { return String(m).split("").map(function (c) { return sup[c] || c; }).join(""); }
   function esc(t) { return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;"); }
@@ -34,4 +35,7 @@
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(md).then(function () { done(true); }, fb);
     else fb();
   });
+  }
+  window.SWr = render;
+  render();
 })();
